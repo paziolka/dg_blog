@@ -33,7 +33,7 @@ class ViewsTest(TestCase):
             ).replace("\n", "").replace(" ", "")
 
             actual_query = ctx.captured_queries[0]['sql'].replace("\n", "").replace(" ", "")
-            self.assertIn(expected_query, actual_query)
+            self.assertEqual(expected_query, actual_query)
 
     def test_post_detail_view(self):
         with CaptureQueriesContext(connection) as ctx:
@@ -51,7 +51,7 @@ class ViewsTest(TestCase):
             ).replace("\n", "").replace(" ", "")
 
             actual_query = ctx.captured_queries[0]['sql'].replace("\n", "").replace(" ", "")
-            self.assertIn(expected_query, actual_query)
+            self.assertEqual(expected_query, actual_query)
 
     def test_post_new_view_get(self):
         response = self.client.get(reverse('post_new'))
@@ -77,7 +77,7 @@ class ViewsTest(TestCase):
             ).replace("\n", "").replace(" ", "")
 
             actual_query = ctx.captured_queries[-1]['sql'].replace("\n", "").replace(" ", "")
-            self.assertIn(expected_query, actual_query)
+            self.assertEqual(expected_query, actual_query)
 
         post = Post.objects.get(pk=2)
         self.assertEqual(post.title, 'Test Post')
@@ -101,5 +101,5 @@ class ViewsTest(TestCase):
             ).replace("\n", "").replace(" ", "")
 
             actual_query = ctx.captured_queries[0]['sql'].replace("\n", "").replace(" ", "")
-            self.assertIn(expected_query, actual_query)
+            self.assertEqual(expected_query, actual_query)
 
